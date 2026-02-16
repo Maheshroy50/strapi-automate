@@ -11,23 +11,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-# Generate a new SSH key pair if none provided
-resource "tls_private_key" "generated" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "aws_key_pair" "generated" {
-  key_name   = "${var.project_name}-key"
-  public_key = tls_private_key.generated.public_key_openssh
-}
-
-resource "local_file" "private_key" {
-  content  = tls_private_key.generated.private_key_pem
-  filename = "${path.root}/${var.project_name}-key.pem"
-  file_permission = "0400"
-}
-
 resource "aws_security_group" "strapi_sg" {
   name        = "${var.project_name}-sg"
   description = "Allow SSH and HTTP"
@@ -57,9 +40,9 @@ resource "aws_security_group" "strapi_sg" {
 resource "aws_instance" "strapi_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  key_name      = aws_key_pair.generated.key_name
+  key_name      = var.key_name
 
-  iam_instance_profile = "ec2-ecr-role"
+
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
 
   user_data = templatefile("${path.module}/user_data.sh", {

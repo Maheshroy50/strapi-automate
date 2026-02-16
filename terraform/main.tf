@@ -4,6 +4,7 @@ module "ec2" {
   project_name  = var.project_name
   instance_type = var.instance_type
   region        = var.region
+  key_name      = "strapi"
 
   docker_username = var.docker_username
   docker_password = var.docker_password

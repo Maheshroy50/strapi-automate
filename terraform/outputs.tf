@@ -5,5 +5,5 @@ output "ec2_public_ip" {
 }
 
 output "ssh_command" {
-  value = "ssh -i ${var.project_name}-key.pem ubuntu@${module.ec2.public_ip}"
+  value = "ssh -i strapi.pem ubuntu@${module.ec2.public_ip}"
 }
