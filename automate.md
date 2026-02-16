@@ -66,7 +66,7 @@ Before running the pipelines, ensure you have the following secrets added to you
 4.  Runs `terraform plan` injecting your Docker Hub credentials and the image tag.
 5.  Runs `terraform apply` to update the EC2 instance's user data script with the new image tag.
 
-**Note**: Updating the EC2 user data usually requires an instance replacement or a reboot to take effect effectively. Using `user_data` updates force a replacement if configured, or you might need to use a different approach (like SSH'ing into the box) for zero-downtime deployments. The current Terraform setup will likely replace the instance if the user data changes, which causes downtime but ensures a clean state.
+**Note**: Updating the EC2 user data usually requires an instance replacement or a reboot to take effect effectively. Using `user_data` updates force a replacement if configured, or you might need to use a different approach (like SSH'ing into the box) for zero-downtime deployments. The current Terraform setup will likely replace the instance if the user data changes, which causes downtime but ensures a .
 
 ## 4. How to Verify Deployment
 
