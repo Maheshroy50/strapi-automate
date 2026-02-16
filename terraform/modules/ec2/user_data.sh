@@ -3,12 +3,9 @@ set -e
 
 # Update and install dependencies
 sudo apt-get update -y
-sudo apt-get install -y ca-certificates curl gnupg lsb-release unzip
+sudo apt-get install -y ca-certificates curl gnupg lsb-release
 
-# Install AWS CLI v2
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+
 
 # Install Docker
 sudo mkdir -m 0755 -p /etc/apt/keyrings

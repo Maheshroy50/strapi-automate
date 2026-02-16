@@ -83,5 +83,5 @@ Before running the pipelines, ensure you have the following secrets added to you
 
 ### What it does
 - Runs `terraform destroy -auto-approve` to completely remove all AWS resources created by this project (EC2, Security Groups, Key Pairs, etc.).
-- **Warning**: This action is irreversible. All data on the EC2 instance will be lost.
+- **Warning**: This action is irreversible. 
 
